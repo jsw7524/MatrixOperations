@@ -1,4 +1,6 @@
-﻿namespace MyApp // Note: actual namespace depends on the project name.
+﻿using Newtonsoft.Json;
+
+namespace MyApp // Note: actual namespace depends on the project name.
 {
     public static class MatrixHelper
     {
@@ -30,6 +32,13 @@
         {
             return MatrixOperations.Instance;
         }
+
+
+        public static Matrix MatrixFromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Matrix>(json);
+        }
+
 
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyApp;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace TestProject1
 {
@@ -91,6 +92,19 @@ namespace TestProject1
             Assert.AreEqual(0.0, result[1, 0]);
             Assert.AreEqual(6.0, result[1, 1]);
         }
+
+        //[TestMethod]
+        //public void TestMethodMatrix100()
+        //{
+        //    int n = 1000;
+        //    Matrix randomMatrixA = MatrixHelper.GetRandomMatrix(n, n);
+        //    Matrix randomMatrixB = MatrixHelper.GetRandomMatrix(n, n);
+        //    Matrix result = randomMatrixA * randomMatrixB;
+        //    File.WriteAllText("MatrixA1000", JsonConvert.SerializeObject(randomMatrixA));
+        //    File.WriteAllText("MatrixB1000", JsonConvert.SerializeObject(randomMatrixB));
+        //    File.WriteAllText("MatrixResult100", JsonConvert.SerializeObject(result));
+        //}
+
 
     }
 }

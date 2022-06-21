@@ -13,6 +13,11 @@
             matrixOperator = MatrixHelper.GetMatrixOperator();
         }
 
+        public Matrix()
+        {
+
+        }
+
         public double this[int r, int c]
         {
             get => matrix[r, c];
