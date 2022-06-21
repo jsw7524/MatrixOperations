@@ -9,6 +9,13 @@ namespace MyApp // Note: actual namespace depends on the project name.
         public int row;
         public int col;
 
+        public static IMatrixOperations _matrixOperator;
+
+        static Matrix()
+        {
+            _matrixOperator = MatrixHelper.GetMatrixOperator();
+        }
+
         public double this[int r, int c]
         {
             get => matrix[r, c];
@@ -30,17 +37,17 @@ namespace MyApp // Note: actual namespace depends on the project name.
         }
         public static Matrix operator *(Matrix a, Matrix b)
         {
-            return MatrixOperations.MultiplyMatrices(a, b);
+            return _matrixOperator.MultiplyMatrices(a, b);
         }
 
         public static Matrix operator *(double a, Matrix b)
         {
-            return MatrixOperations.MultiplyMatrices(MatrixHelper.GetIdentityMatrix(b.row, a), b);
+            return _matrixOperator.MultiplyMatrices(MatrixHelper.GetIdentityMatrix(b.row, a), b);
         }
 
         public static Matrix operator +(Matrix a, Matrix b)
         {
-            return MatrixOperations.AddMatrices(a, b);
+            return _matrixOperator.AddMatrices(a, b);
         }
 
         public Matrix(int r, int c)
@@ -52,7 +59,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
     }
 
 
-    public class MatrixHelper
+    public static class MatrixHelper
     {
         static Random _random = new Random(7524);
         public static Matrix GetRandomMatrix(int r, int c)
@@ -77,6 +84,12 @@ namespace MyApp // Note: actual namespace depends on the project name.
             }
             return m;
         }
+
+        public static IMatrixOperations GetMatrixOperator()
+        {
+            return MatrixOperations.Instance;
+        }
+
     }
 
     public interface IMatrixOperations
@@ -86,10 +99,27 @@ namespace MyApp // Note: actual namespace depends on the project name.
     }
 
 
-    public class MatrixOperations
+    public class MatrixOperations : IMatrixOperations
     {
+        private MatrixOperations() { }
+        private static IMatrixOperations _instance = null;
+        private static readonly object _mutex = new object();
+        public static IMatrixOperations Instance
+        {
+            get
+            {
+                lock (_mutex)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new MatrixOperations();
+                    }
+                }
+                return _instance;
+            }
+        }
 
-        public static Matrix AddMatrices(Matrix a, Matrix b)
+        public Matrix AddMatrices(Matrix a, Matrix b)
         {
             Matrix m = new Matrix(a.row, b.col);
             for (int i = 0; i < a.row; i++)
@@ -102,7 +132,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             return m;
         }
 
-        public static Matrix MultiplyMatrices(Matrix a, Matrix b)
+        public Matrix MultiplyMatrices(Matrix a, Matrix b)
         {
             Matrix m = new Matrix(a.row, b.col);
             for (int i = 0; i < a.row; i++)
