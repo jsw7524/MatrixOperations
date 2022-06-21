@@ -10,8 +10,8 @@ namespace TestProject1
         [TestMethod]
         public void TestMethod1()
         {
-            Matrix identityMatrix1 = MatrixOperations.GetIdentityMatrix(3);
-            Matrix identityMatrix2 = MatrixOperations.GetIdentityMatrix(3);
+            Matrix identityMatrix1 = MatrixHelper.GetIdentityMatrix(3);
+            Matrix identityMatrix2 = MatrixHelper.GetIdentityMatrix(3);
             Matrix result = identityMatrix1 * identityMatrix2;
             Assert.AreEqual(1.0, result[0, 0]);
             Assert.AreEqual(0.0, result[0, 1]);
@@ -29,8 +29,8 @@ namespace TestProject1
         [TestMethod]
         public void TestMethod2()
         {
-            Matrix identityMatrix = MatrixOperations.GetIdentityMatrix(2);
-            Matrix randomMatrix = MatrixOperations.GetRandomMatrix(2, 2);
+            Matrix identityMatrix = MatrixHelper.GetIdentityMatrix(2);
+            Matrix randomMatrix = MatrixHelper.GetRandomMatrix(2, 2);
             Matrix result = identityMatrix * randomMatrix;
 
             Assert.AreEqual(randomMatrix[0, 0], result[0, 0]);
@@ -81,6 +81,16 @@ namespace TestProject1
             Assert.AreEqual(0.0, result[1, 1]);
         }
 
+        [TestMethod]
+        public void TestMethod6()
+        {
+            Matrix identityMatrix1 = MatrixHelper.GetIdentityMatrix(2);
+            Matrix result = identityMatrix1 + 2.0 * identityMatrix1 + 3.0 * identityMatrix1;
+            Assert.AreEqual(6.0, result[0, 0]);
+            Assert.AreEqual(0.0, result[0, 1]);
+            Assert.AreEqual(0.0, result[1, 0]);
+            Assert.AreEqual(6.0, result[1, 1]);
+        }
 
     }
 }

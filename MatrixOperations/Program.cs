@@ -35,7 +35,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         public static Matrix operator *(double a, Matrix b)
         {
-            return MatrixOperations.MultiplyMatrices(MatrixOperations.GetIdentityMatrix(b.row, a), b);
+            return MatrixOperations.MultiplyMatrices(MatrixHelper.GetIdentityMatrix(b.row, a), b);
         }
 
         public static Matrix operator +(Matrix a, Matrix b)
@@ -51,9 +51,43 @@ namespace MyApp // Note: actual namespace depends on the project name.
         }
     }
 
-    public class MatrixOperations
+
+    public class MatrixHelper
     {
         static Random _random = new Random(7524);
+        public static Matrix GetRandomMatrix(int r, int c)
+        {
+            Matrix m = new Matrix(r, c);
+            for (int i = 0; i < r; i++)
+            {
+                for (int j = 0; j < c; j++)
+                {
+                    m[i, j] = _random.NextDouble();
+                }
+            }
+            return m;
+        }
+
+        public static Matrix GetIdentityMatrix(int n, double defaultValue = 1.0)
+        {
+            Matrix m = new Matrix(n, n);
+            for (int i = 0; i < n; i++)
+            {
+                m[i, i] = defaultValue;
+            }
+            return m;
+        }
+    }
+
+    public interface IMatrixOperations
+    {
+        Matrix AddMatrices(Matrix a, Matrix b);
+        Matrix MultiplyMatrices(Matrix a, Matrix b);
+    }
+
+
+    public class MatrixOperations
+    {
 
         public static Matrix AddMatrices(Matrix a, Matrix b)
         {
@@ -80,29 +114,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
                         m[i, j] += a[i, k] * b[k, j];
                     }
                 }
-            }
-            return m;
-        }
-
-        public static Matrix GetRandomMatrix(int r, int c)
-        {
-            Matrix m = new Matrix(r, c);
-            for (int i = 0; i < r; i++)
-            {
-                for (int j = 0; j < c; j++)
-                {
-                    m[i, j] = _random.NextDouble();
-                }
-            }
-            return m;
-        }
-
-        public static Matrix GetIdentityMatrix(int n, double defaultValue=1.0)
-        {
-            Matrix m = new Matrix(n, n);
-            for (int i = 0; i < n; i++)
-            {
-                m[i, i] = defaultValue;
             }
             return m;
         }
