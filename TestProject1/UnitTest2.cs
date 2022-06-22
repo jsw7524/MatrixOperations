@@ -11,7 +11,6 @@ namespace TestProject1
         [TestMethod]
         public void TestMethod1()
         {
-            //single thread
             Matrix matrix1 = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixA1000"));
             Matrix matrix2 = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixB1000"));
             Matrix expectedMatrix = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixMulResult1000"));
@@ -27,7 +26,6 @@ namespace TestProject1
         [TestMethod]
         public void TestMethod2()
         {
-            //single thread
             Matrix matrix1 = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixA1000"));
             Matrix matrix2 = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixB1000"));
             Matrix expectedMatrix = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixAddResult1000"));
@@ -45,7 +43,7 @@ namespace TestProject1
         public void TestMethod3()
         {
             //Multi threads
-            Matrix.matrixOperator = new MatrixOperationsMT();
+            //Matrix.matrixOperator = MatrixOperationsMT.Instance;
             Matrix matrix1 = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixA1000"));
             Matrix matrix2 = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixB1000"));
             Matrix expectedMatrix = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixMulResult1000"));
@@ -63,7 +61,7 @@ namespace TestProject1
         public void TestMethod4()
         {
             //Multi threads
-            Matrix.matrixOperator = new MatrixOperationsMT();
+            //Matrix.matrixOperator = MatrixOperationsMT.Instance;
             Matrix matrix1 = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixA1000"));
             Matrix matrix2 = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixB1000"));
             Matrix expectedMatrix = MatrixHelper.MatrixFromJson(File.ReadAllText("MatrixAddResult1000"));
@@ -79,7 +77,7 @@ namespace TestProject1
         public void TestMethod5()
         {
             //Multi threads
-            Matrix.matrixOperator = new MatrixOperationsMT();
+            Matrix.matrixOperator = MatrixOperationsMT.Instance;
             Matrix identityMatrix1 = MatrixHelper.GetIdentityMatrix(1000);
             Matrix result = identityMatrix1 + 2.0 * identityMatrix1 + 3.0 * identityMatrix1;
             Assert.AreEqual(6.0, result[0, 0]);

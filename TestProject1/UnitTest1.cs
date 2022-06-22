@@ -93,6 +93,51 @@ namespace TestProject1
             Assert.AreEqual(6.0, result[1, 1]);
         }
 
+        [TestMethod]
+        public void TestMethod7()
+        {
+            Matrix matrixA = new Matrix(new double[2, 3] { { 1, 2, 3 }, { 4, 5, 6 } });
+            Matrix result = matrixA.T;
+            Assert.AreEqual(1.0, result[0, 0]);
+            Assert.AreEqual(4.0, result[0, 1]);
+            Assert.AreEqual(2.0, result[1, 0]);
+            Assert.AreEqual(5.0, result[1, 1]);
+            Assert.AreEqual(3.0, result[2, 0]);
+            Assert.AreEqual(6.0, result[2, 1]);
+        }
+
+        [TestMethod]
+        public void TestMethod8()
+        {
+            Vector a = new Vector(new double[3] { 1, 2, 3 });
+            Vector b = new Vector(new double[3] { 4, 5, 6 });
+            Vector result = a + b;
+            Assert.AreEqual(5.0, result[0]);
+            Assert.AreEqual(7.0, result[1]);
+            Assert.AreEqual(9.0, result[2]);
+        }
+
+
+        [TestMethod]
+        public void TestMethod9()
+        {
+            Vector a = new Vector(new double[3] { 1, 2, 3 });
+            Vector b = new Vector(new double[3] { 4, 5, 6 });
+            double result = a * b;
+            Assert.AreEqual(32.0, result);
+
+        }
+
+        [TestMethod]
+        public void TestMethod10()
+        {
+            Matrix matrixA = new Matrix(new double[2, 3] { { 1, 0, -1 }, { 3, 1, 2 } });
+            Vector b = new Vector(new double[3] { 1, 2, 3 });
+            Vector result = matrixA * b;
+            Assert.AreEqual(-2.0, result[0]);
+            Assert.AreEqual(11.0, result[1]);
+        }
+
         //[TestMethod]
         //public void TestMethodMatrix100()
         //{

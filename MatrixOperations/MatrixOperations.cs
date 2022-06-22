@@ -48,5 +48,28 @@
             }
             return m;
         }
+
+        public Matrix Transpose(Matrix a)
+        {
+            Matrix m = new Matrix(a.col, a.row);
+            for (int i = 0; i < a.row; i++)
+            {
+                for (int j = 0; j < a.col; j++)
+                {
+                    m[j, i] = a[i, j];
+                }
+            }
+            return m;
+        }
+
+        //public double DotProduct(Matrix vectorA, Matrix vectorB)
+        //{
+        //    double tmp = 0.0;
+        //    for (int i = 0; i < vectorA.row; i++)
+        //    {
+        //        tmp += vectorA[0, i] * vectorB[0, i];  
+        //    }
+        //    return tmp;
+        //}
     }
 }

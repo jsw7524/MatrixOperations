@@ -24,6 +24,11 @@
             set => matrix[r, c] = value;
         }
 
+        public Matrix T
+        {
+            get => matrixOperator.Transpose(this);
+        }
+
         public Matrix(double[,] data)
         {
             row = data.GetLength(0);
