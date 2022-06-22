@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyApp;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 
 namespace TestProject1
@@ -125,7 +126,6 @@ namespace TestProject1
             Vector b = new Vector(new double[3] { 4, 5, 6 });
             double result = a * b;
             Assert.AreEqual(32.0, result);
-
         }
 
         [TestMethod]
@@ -136,6 +136,32 @@ namespace TestProject1
             Vector result = matrixA * b;
             Assert.AreEqual(-2.0, result[0]);
             Assert.AreEqual(11.0, result[1]);
+        }
+
+
+        [TestMethod]
+        public void TestMethod11()
+        {
+            Vector a = new Vector(new double[3] { 1, 2, 3 });
+            Vector b = new Vector(new double[3] { 4, 5, 6 });
+            Matrix result = new Matrix(new List<Vector>() { a, b });
+            Assert.AreEqual(2, result.col);
+            Assert.AreEqual(3, result.row);
+            Assert.AreEqual(1.0, result[0, 0]);
+            Assert.AreEqual(4.0, result[0, 1]);
+            Assert.AreEqual(6.0, result[2, 1]);
+        }
+
+
+        [TestMethod]
+        public void TestMethod12()
+        {
+            Vector a = new Vector(new double[3] { 1, 2, 3 });
+            Vector b = new Vector(new double[3] { 4, 5, 6 });
+            Vector result = new Vector(2.0 * a + 3.0 * b);
+            Assert.AreEqual(14.0, result[0]);
+            Assert.AreEqual(19.0, result[1]);
+            Assert.AreEqual(24.0, result[2]);
         }
 
         //[TestMethod]

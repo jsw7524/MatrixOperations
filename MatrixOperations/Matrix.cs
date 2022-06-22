@@ -18,6 +18,22 @@
 
         }
 
+        public Matrix(List<Vector> vectors)
+        {
+            row = vectors.FirstOrDefault().row;
+            col = vectors.Count();
+            matrix = new double[row, col];
+            int i = 0;
+            foreach (Vector v in vectors)
+            {
+                for (int j = 0; j < v.row; j++)
+                {
+                    this[j, i] = v[j, 0];
+                }
+                i += 1;
+            }
+        }
+
         public double this[int r, int c]
         {
             get => matrix[r, c];
@@ -56,7 +72,6 @@
         {
             return matrixOperator.AddMatrices(a, b);
         }
-
         public Matrix(int r, int c)
         {
             row = r;
