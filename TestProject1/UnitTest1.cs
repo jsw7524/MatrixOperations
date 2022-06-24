@@ -131,7 +131,7 @@ namespace TestProject1
         [TestMethod]
         public void TestMethod10()
         {
-            Matrix matrixA = new Matrix(new double[2, 3] { { 1, 0, -1 }, { 3, 1, 2 } });
+            Matrix matrixA = new Matrix(new double[,] { { 1, 0, -1 }, { 3, 1, 2 } });
             Vector b = new Vector(new double[3] { 1, 2, 3 });
             Vector result = matrixA * b;
             Assert.AreEqual(-2.0, result[0]);
@@ -162,6 +162,19 @@ namespace TestProject1
             Assert.AreEqual(14.0, result[0]);
             Assert.AreEqual(19.0, result[1]);
             Assert.AreEqual(24.0, result[2]);
+        }
+
+
+
+        [TestMethod]
+        public void TestMethod13()
+        {
+            Vector a = new Vector(new double[3] { 3, -3, 1 });
+            Vector b = new Vector(new double[3] { 4, 9, 2 });
+            Vector result = a ^ b;
+            Assert.AreEqual(-15.0, result[0]);
+            Assert.AreEqual(-2.0, result[1]);
+            Assert.AreEqual(39.0, result[2]);
         }
 
         //[TestMethod]

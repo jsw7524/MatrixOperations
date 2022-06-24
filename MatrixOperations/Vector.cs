@@ -4,8 +4,8 @@
     {
         public double this[int i]
         {
-            get => matrix[i,0];
-            set => matrix[i,0] = value;
+            get => matrix[i, 0];
+            set => matrix[i, 0] = value;
         }
 
         public Vector(Matrix m) : base(m.row, 1)
@@ -27,11 +27,17 @@
         public static Vector operator +(Vector a, Vector b)
         {
             return new Vector(matrixOperator.AddMatrices(a, b));
+
         }
 
         public static double operator *(Vector a, Vector b) //Dot Product
         {
-            return (matrixOperator.MultiplyMatrices(a.T, b))[0,0];
+            return (matrixOperator.MultiplyMatrices(a.T, b))[0, 0];
+        }
+
+        public static Vector operator ^(Vector u, Vector v) //Cross Product only defined in 3-Dimension space
+        {
+            return new Vector(new double[] { u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0] });
         }
 
         public static Vector operator *(Matrix a, Vector b) //linear transform
