@@ -70,6 +70,11 @@
             }
 
             int n = a.col;
+            if (n == 1)
+            {
+                return a[0, 0];
+            }
+
             if (n == 2)
             {
                 return a[0, 0] * a[1, 1] - a[0, 1] * a[1, 0];
@@ -98,6 +103,53 @@
             }
 
             return tmp;
+        }
+
+        public Matrix CofactorMatrix(Matrix a)
+        {
+            int n = a.col;
+            Matrix cofactorMatrix = new Matrix(n, n);
+            for (int y = 0; y < n; y++)
+            {
+                for (int x = 0; x < n; x++)
+                {
+                    Matrix m = new Matrix(n - 1, n - 1);
+                    for (int i = 0; i < y; i++)
+                    {
+                        for (int j = 0; j < x; j++)
+                        {
+                            m[i, j] = a[i, j];
+                        }
+                    }
+
+                    for (int i = y + 1; i < n; i++)
+                    {
+                        for (int j = 0; j < x; j++)
+                        {
+                            m[i-1, j] = a[i, j];
+                        }
+                    }
+
+                    for (int i = 0; i < y; i++)
+                    {
+                        for (int j = x+1; j < n; j++)
+                        {
+                            m[i, j-1] = a[i, j];
+                        }
+                    }
+
+                    for (int i = y+1; i < n; i++)
+                    {
+                        for (int j = x + 1; j < n; j++)
+                        {
+                            m[i-1, j - 1] = a[i, j];
+                        }
+                    }
+
+                    cofactorMatrix[y, x] = Math.Pow(-1.0, y+x) * m.Determinant();
+                }
+            }
+            return cofactorMatrix;
         }
 
         //public double DotProduct(Matrix vectorA, Matrix vectorB)

@@ -183,7 +183,7 @@ namespace TestProject1
         public void TestMethod14()
         {
             Matrix identityMatrix = MatrixHelper.GetIdentityMatrix(3);
-            double result=identityMatrix.Determinant();
+            double result = identityMatrix.Determinant();
             Assert.AreEqual(1.0, result);
         }
 
@@ -198,9 +198,29 @@ namespace TestProject1
         [TestMethod]
         public void TestMethod16()
         {
-            Matrix m = new Matrix(new double[,] { { 4,3, 2, 2 }, { 0, 1, -3,3 }, { 0, -1, 3,3 }, { 0,3,1,1} });
+            Matrix m = new Matrix(new double[,] { { 4, 3, 2, 2 }, { 0, 1, -3, 3 }, { 0, -1, 3, 3 }, { 0, 3, 1, 1 } });
             double result = m.Determinant();
             Assert.AreEqual(-240.0, result);
+        }
+
+        [TestMethod]
+        public void TestMethod17()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 4, 5 }, { 1, 0, 6 } });
+            Matrix result = m.CofactorMatrix();
+            Assert.AreEqual(24.0, result[0, 0]);
+            Assert.AreEqual(3.0, result[1, 1]);
+            Assert.AreEqual(-5.0, result[2, 1]);
+        }
+
+        [TestMethod]
+        public void TestMethod18()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 9, 3 }, { 2, 5, 4 }, { 3, 7, 8 } });
+            Matrix result = m.CofactorMatrix();
+            Assert.AreEqual(12.0, result[0, 0]);
+            Assert.AreEqual(-1.0, result[1, 1]);
+            Assert.AreEqual(2.0, result[2, 1]);
         }
 
         //[TestMethod]

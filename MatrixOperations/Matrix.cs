@@ -64,6 +64,10 @@
             return matrixOperator.Determinant(this);
         }
 
+        public Matrix CofactorMatrix()
+        {
+            return matrixOperator.CofactorMatrix(this);
+        }
 
         public static Matrix operator *(Matrix a, Matrix b)
         {

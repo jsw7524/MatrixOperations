@@ -98,7 +98,7 @@
                         m[i - 1, j - 1] = a[i, j];
                     }
                 }
-                tmp[c]= Math.Pow(-1.0, c) * a[0, c] * DeterminantSingleThread(m);
+                tmp[c] = Math.Pow(-1.0, c) * a[0, c] * DeterminantSingleThread(m);
             });
             return tmp.Sum();
         }
@@ -112,6 +112,12 @@
             }
 
             int n = a.col;
+
+            if (n == 1)
+            {
+                return a[0, 0];
+            }
+
             if (n == 2)
             {
                 return a[0, 0] * a[1, 1] - a[0, 1] * a[1, 0];
@@ -142,5 +148,9 @@
             return tmp;
         }
 
+        public Matrix CofactorMatrix(Matrix a)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
