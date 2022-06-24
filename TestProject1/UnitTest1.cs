@@ -9,6 +9,8 @@ namespace TestProject1
     [TestClass]
     public class UnitTest1
     {
+
+
         [TestMethod]
         public void TestMethod1()
         {
@@ -175,6 +177,30 @@ namespace TestProject1
             Assert.AreEqual(-15.0, result[0]);
             Assert.AreEqual(-2.0, result[1]);
             Assert.AreEqual(39.0, result[2]);
+        }
+
+        [TestMethod]
+        public void TestMethod14()
+        {
+            Matrix identityMatrix = MatrixHelper.GetIdentityMatrix(3);
+            double result=identityMatrix.Determinant();
+            Assert.AreEqual(1.0, result);
+        }
+
+        [TestMethod]
+        public void TestMethod15()
+        {
+            Matrix m = new Matrix(new double[,] { { 3, 1, 1 }, { 4, -2, 5 }, { 2, 8, 7 } });
+            double result = m.Determinant();
+            Assert.AreEqual(-144.0, result);
+        }
+
+        [TestMethod]
+        public void TestMethod16()
+        {
+            Matrix m = new Matrix(new double[,] { { 4,3, 2, 2 }, { 0, 1, -3,3 }, { 0, -1, 3,3 }, { 0,3,1,1} });
+            double result = m.Determinant();
+            Assert.AreEqual(-240.0, result);
         }
 
         //[TestMethod]

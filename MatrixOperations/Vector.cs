@@ -42,6 +42,10 @@
 
         public static Vector operator ^(Vector u, Vector v) //Cross Product only defined in 3-Dimension space
         {
+            if (u.row != 3 || v.row != 3)
+            {
+                throw new Exception("Cross Product only defined in 3-Dimension space");
+            }
             return new Vector(new double[] { u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0] });
         }
 

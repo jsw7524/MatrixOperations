@@ -66,5 +66,81 @@
             return m;
         }
 
+        public double Determinant(Matrix a)
+        {
+            if (a.col != a.row)
+            {
+                throw new Exception("Not a Square Matrix");
+            }
+
+            int n = a.col;
+            if (n == 2)
+            {
+                return a[0, 0] * a[1, 1] - a[0, 1] * a[1, 0];
+            }
+
+            double[] tmp = new double[n];
+            Parallel.For(0, n, c =>
+            {
+                Matrix m = new Matrix(n - 1, n - 1);
+                for (int i = 1; i < n; i++)
+                {
+                    for (int j = 0; j < c; j++)
+                    {
+                        m[i - 1, j] = a[i, j];
+                    }
+                }
+
+                for (int i = 1; i < n; i++)
+                {
+                    for (int j = c + 1; j < n; j++)
+                    {
+                        m[i - 1, j - 1] = a[i, j];
+                    }
+                }
+                tmp[c]= Math.Pow(-1.0, c) * a[0, c] * DeterminantSingleThread(m);
+            });
+            return tmp.Sum();
+        }
+
+
+        public double DeterminantSingleThread(Matrix a)
+        {
+            if (a.col != a.row)
+            {
+                throw new Exception("Not a Square Matrix");
+            }
+
+            int n = a.col;
+            if (n == 2)
+            {
+                return a[0, 0] * a[1, 1] - a[0, 1] * a[1, 0];
+            }
+
+            double tmp = 0.0;
+            for (int c = 0; c < n; c++)
+            {
+                Matrix m = new Matrix(n - 1, n - 1);
+                for (int i = 1; i < n; i++)
+                {
+                    for (int j = 0; j < c; j++)
+                    {
+                        m[i - 1, j] = a[i, j];
+                    }
+                }
+
+                for (int i = 1; i < n; i++)
+                {
+                    for (int j = c + 1; j < n; j++)
+                    {
+                        m[i - 1, j - 1] = a[i, j];
+                    }
+                }
+                tmp += Math.Pow(-1.0, c) * a[0, c] * Determinant(m);
+            }
+
+            return tmp;
+        }
+
     }
 }

@@ -5,7 +5,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
     public static class MatrixHelper
     {
         static Random _random = new Random(7524);
-        static bool isMultiThread = true;
+        static bool isMultiThread = false;
         public static Matrix GetRandomMatrix(int r, int c)
         {
             Matrix m = new Matrix(r, c);
@@ -38,6 +38,11 @@ namespace MyApp // Note: actual namespace depends on the project name.
         public static Matrix MatrixFromJson(string json)
         {
             return JsonConvert.DeserializeObject<Matrix>(json);
+        }
+
+        public static string MatrixToJson(Matrix a)
+        {
+            return JsonConvert.SerializeObject(a);
         }
 
 

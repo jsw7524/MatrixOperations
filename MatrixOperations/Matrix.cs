@@ -58,6 +58,13 @@
                 }
             }
         }
+
+        public double Determinant()
+        {
+            return matrixOperator.Determinant(this);
+        }
+
+
         public static Matrix operator *(Matrix a, Matrix b)
         {
             return matrixOperator.MultiplyMatrices(a, b);

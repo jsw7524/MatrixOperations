@@ -92,5 +92,14 @@ namespace TestProject1
             Assert.AreEqual(0.0, result[1, 986]);
             Assert.AreEqual(0.0, result[639, 192]);
         }
+
+        [TestMethod]
+        public void TestMethod6()
+        {
+            int n = 12;
+            Matrix randomMatrixA = MatrixHelper.GetRandomMatrix(n, n);
+            double result = randomMatrixA.Determinant();
+            Assert.AreEqual(0.04212063551483086, result);
+        }
     }
 }
