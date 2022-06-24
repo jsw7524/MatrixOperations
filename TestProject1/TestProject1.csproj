@@ -19,4 +19,19 @@
     <ProjectReference Include="..\MatrixOperations\MatrixOperations.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="MatrixA1000">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MatrixAddResult1000">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MatrixB1000">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MatrixMulResult1000">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
