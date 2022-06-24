@@ -29,6 +29,11 @@
             return new Vector(matrixOperator.AddMatrices(a, b));
         }
 
+        public static Vector operator *(double a, Vector b)
+        {
+            return new Vector(matrixOperator.MultiplyMatrices(MatrixHelper.GetIdentityMatrix(b.row, a), b));
+        }
+
         public static double operator *(Vector a, Vector b) //Dot Product
         {
             return (matrixOperator.MultiplyMatrices(a.T, b))[0,0];
