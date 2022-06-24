@@ -158,7 +158,7 @@ namespace TestProject1
         {
             Vector a = new Vector(new double[3] { 1, 2, 3 });
             Vector b = new Vector(new double[3] { 4, 5, 6 });
-            Vector result = new Vector(2.0 * a + 3.0 * b);
+            Vector result = 2.0 * a + 3.0 * b;
             Assert.AreEqual(14.0, result[0]);
             Assert.AreEqual(19.0, result[1]);
             Assert.AreEqual(24.0, result[2]);
