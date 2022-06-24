@@ -1,8 +1,6 @@
 # JSW MatrixOperations
 
-A light-weight matrix operations library for C#, supports matrix addition, matrix mulitplication, vector addition, dot product, cross product and using CPU cores-corresponding threads as many as possible to parallelly compute result.
-
-Beside that, matrix operations can be writen in easy understanding way like regular math expression.
+A light-weight matrix operations library for C#, supports matrix addition, matrix mulitplication, vector addition, dot product, cross product and using CPU cores-corresponding threads as many as possible to parallelly compute result.Beside that, matrix operations can be writen in easy understanding way like regular math expression.
 
 #### fluent matrix operations
 ```C#
@@ -42,7 +40,7 @@ Beside that, matrix operations can be writen in easy understanding way like regu
             Assert.AreEqual(5.0, result[0]);
             Assert.AreEqual(7.0, result[1]);
             Assert.AreEqual(9.0, result[2]);
-		}
+        }
 ```
 
 #### Get Matrix elemet
@@ -56,7 +54,7 @@ Beside that, matrix operations can be writen in easy understanding way like regu
             Assert.AreEqual(1.0, result[0, 1]);
             Assert.AreEqual(1.0, result[1, 0]);
             Assert.AreEqual(0.0, result[1, 1]);
-		}
+        }
 ```
 
 #### Create 3x3 Identity Matrix
