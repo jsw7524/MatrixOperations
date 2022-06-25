@@ -152,6 +152,11 @@
             return cofactorMatrix;
         }
 
+        public Matrix InverseMatrix(Matrix a)
+        {
+            return (1.0 / a.Determinant()) * (a.CofactorMatrix()).T;
+        }
+
         //public double DotProduct(Matrix vectorA, Matrix vectorB)
         //{
         //    double tmp = 0.0;

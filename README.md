@@ -113,3 +113,39 @@ A light-weight matrix operations library for C#, supports matrix addition, matri
             Vector result = matrixA * b;
         }
 ```
+
+#### Determinant
+```C#
+        public void TestMethod()
+        {
+            Matrix m = new Matrix(new double[,] { { 4, 3, 2, 2 }, { 0, 1, -3, 3 }, { 0, -1, 3, 3 }, { 0, 3, 1, 1 } });
+            double result = m.Determinant();
+            Assert.AreEqual(-240.0, result);
+        }
+```
+
+
+#### Cofactor Matrix
+```C#
+        public void TestMethod()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 4, 5 }, { 1, 0, 6 } });
+            Matrix result = m.CofactorMatrix();
+            Assert.AreEqual(24.0, result[0, 0]);
+            Assert.AreEqual(3.0, result[1, 1]);
+            Assert.AreEqual(-5.0, result[2, 1]);
+        }
+```
+
+#### Inverse Matrix
+```C#
+        public void TestMethod()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            Matrix result = m.InverseMatrix();
+            Assert.AreEqual(-6.0, result[0, 0]);
+            Assert.AreEqual(-3.0, result[1, 1]);
+            Assert.AreEqual(-1, result[2, 0]);
+            Assert.AreEqual(5.0, result[1, 0]);
+        }
+```

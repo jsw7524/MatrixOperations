@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyApp;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -223,17 +224,56 @@ namespace TestProject1
             Assert.AreEqual(2.0, result[2, 1]);
         }
 
-        //[TestMethod]
-        //public void TestMethodMatrix100()
-        //{
-        //    int n = 1000;
-        //    Matrix randomMatrixA = MatrixHelper.GetRandomMatrix(n, n);
-        //    Matrix randomMatrixB = MatrixHelper.GetRandomMatrix(n, n);
-        //    Matrix result = randomMatrixA * randomMatrixB;
-        //    File.WriteAllText("MatrixA1000", JsonConvert.SerializeObject(randomMatrixA));
-        //    File.WriteAllText("MatrixB1000", JsonConvert.SerializeObject(randomMatrixB));
-        //    File.WriteAllText("MatrixResult100", JsonConvert.SerializeObject(result));
-        //}
+        [TestMethod]
+        public void TestMethod19()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            Matrix result = m.InverseMatrix();
+            Assert.AreEqual(-6.0, result[0, 0]);
+            Assert.AreEqual(-3.0, result[1, 1]);
+            Assert.AreEqual(-1, result[2, 0]);
+            Assert.AreEqual(5.0, result[1, 0]);
+        }
+
+        [TestMethod]
+        public void TestMethod20()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            Matrix inverseMatrix = m.InverseMatrix();
+            Matrix result = inverseMatrix * m;
+            
+            Assert.AreEqual(1.0, Math.Round(result[0, 0], 14));
+            Assert.AreEqual(1.0, Math.Round(result[1, 1], 14));
+            Assert.AreEqual(1.0, Math.Round(result[2, 2], 14));
+            Assert.AreEqual(0.0, Math.Round(result[2, 0], 14));
+            Assert.AreEqual(0.0, Math.Round(result[1, 0], 14));
+            Assert.AreEqual(0.0, Math.Round(result[2, 1], 14));
+            Assert.AreEqual(0.0, Math.Round(result[2, 0], 14));
+            Assert.AreEqual(0.0, Math.Round(result[1, 2], 14));
+            Assert.AreEqual(0.0, Math.Round(result[0, 1], 14));
+        }
+
+        [TestMethod]
+        public void TestMethod21()
+        {
+
+            Matrix matrixA = new Matrix(new double[,] { { 1, 2, 2, 1 }, { 1, 2, 4, 2 }, { 2, 7, 5, 2 }, { -1, 4, -6, 3 } });
+            double result = matrixA.Determinant();
+            Assert.AreEqual(-42.0, result);
+        }
+
+        [TestMethod]
+        public void TestMethod22()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 1, 0, 0, 0, 0 }, { 0, 1, 0, 0, 0 }, { 0, 0, -1, -1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 1 } });
+            Matrix result = matrixA.InverseMatrix();
+            Assert.AreEqual(1.0, result[0, 0]);
+            Assert.AreEqual(1.0, result[1, 1]);
+            Assert.AreEqual(-1.0, result[2, 2]);
+            Assert.AreEqual(1.0, result[3, 3]);
+            Assert.AreEqual(1.0, result[4, 4]);
+            Assert.AreEqual(-1.0, result[2, 3]);
+        }
 
 
     }

@@ -68,6 +68,12 @@
         {
             return matrixOperator.CofactorMatrix(this);
         }
+        public Matrix InverseMatrix()
+        {
+            return matrixOperator.InverseMatrix(this);
+        }
+
+
 
         public static Matrix operator *(Matrix a, Matrix b)
         {

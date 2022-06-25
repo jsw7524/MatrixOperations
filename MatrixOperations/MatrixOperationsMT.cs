@@ -142,15 +142,62 @@
                         m[i - 1, j - 1] = a[i, j];
                     }
                 }
-                tmp += Math.Pow(-1.0, c) * a[0, c] * Determinant(m);
+                tmp += Math.Pow(-1.0, c) * a[0, c] * DeterminantSingleThread(m);
             }
-
             return tmp;
         }
 
+
         public Matrix CofactorMatrix(Matrix a)
         {
-            throw new NotImplementedException();
+            int n = a.col;
+            Matrix cofactorMatrix = new Matrix(n, n);
+            for (int y = 0; y < n; y++)
+            {
+                for (int x = 0; x < n; x++)
+                {
+                    Matrix m = new Matrix(n - 1, n - 1);
+                    for (int i = 0; i < y; i++)
+                    {
+                        for (int j = 0; j < x; j++)
+                        {
+                            m[i, j] = a[i, j];
+                        }
+                    }
+
+                    for (int i = y + 1; i < n; i++)
+                    {
+                        for (int j = 0; j < x; j++)
+                        {
+                            m[i - 1, j] = a[i, j];
+                        }
+                    }
+
+                    for (int i = 0; i < y; i++)
+                    {
+                        for (int j = x + 1; j < n; j++)
+                        {
+                            m[i, j - 1] = a[i, j];
+                        }
+                    }
+
+                    for (int i = y + 1; i < n; i++)
+                    {
+                        for (int j = x + 1; j < n; j++)
+                        {
+                            m[i - 1, j - 1] = a[i, j];
+                        }
+                    }
+
+                    cofactorMatrix[y, x] = Math.Pow(-1.0, y + x) * m.Determinant();
+                }
+            }
+            return cofactorMatrix;
+        }
+
+        public Matrix InverseMatrix(Matrix a)
+        {
+            return (1.0 / a.Determinant()) * (a.CofactorMatrix()).T;
         }
     }
 }

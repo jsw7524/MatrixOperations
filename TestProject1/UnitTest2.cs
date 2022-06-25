@@ -77,7 +77,7 @@ namespace TestProject1
         public void TestMethod5()
         {
             //Multi threads
-            Matrix.matrixOperator = MatrixOperationsMT.Instance;
+            //Matrix.matrixOperator = MatrixOperationsMT.Instance;
             Matrix identityMatrix1 = MatrixHelper.GetIdentityMatrix(1000);
             Matrix result = identityMatrix1 + 2.0 * identityMatrix1 + 3.0 * identityMatrix1;
             Assert.AreEqual(6.0, result[0, 0]);
@@ -92,14 +92,28 @@ namespace TestProject1
             Assert.AreEqual(0.0, result[1, 986]);
             Assert.AreEqual(0.0, result[639, 192]);
         }
-
         [TestMethod]
         public void TestMethod6()
         {
-            int n = 12;
-            Matrix randomMatrixA = MatrixHelper.GetRandomMatrix(n, n);
-            double result = randomMatrixA.Determinant();
-            Assert.AreEqual(0.04212063551483086, result);
+            //Multi threads
+            Matrix identityMatrix = MatrixHelper.GetIdentityMatrix(11);
+            double result = identityMatrix.Determinant();
+            Assert.AreEqual(1.0, result);
         }
+
+
+
+        //[TestMethod]
+        //public void TestMethodMatrix100()
+        //{
+        //    int n = 1000;
+        //    Matrix randomMatrixA = MatrixHelper.GetRandomMatrix(n, n);
+        //    Matrix randomMatrixB = MatrixHelper.GetRandomMatrix(n, n);
+        //    Matrix result = randomMatrixA * randomMatrixB;
+        //    File.WriteAllText("MatrixA1000", JsonConvert.SerializeObject(randomMatrixA));
+        //    File.WriteAllText("MatrixB1000", JsonConvert.SerializeObject(randomMatrixB));
+        //    File.WriteAllText("MatrixResult100", JsonConvert.SerializeObject(result));
+        //}
+
     }
 }
