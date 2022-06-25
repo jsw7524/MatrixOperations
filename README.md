@@ -1,7 +1,9 @@
 # JSW MatrixOperations
 
-A light-weight matrix operations library for C#, supports matrix addition, matrix mulitplication, vector addition, dot product, cross product and using CPU cores-corresponding threads as many as possible to parallelly compute result.Beside that, matrix operations can be writen in easy understanding way like regular math expression.
+[nuget downloand link](https://www.nuget.org/packages/JswMatrix/1.0.0#release-body-tab)
 
+A light-weight matrix operations library for C#, supports matrix addition, matrix mulitplication, vector addition, dot product, cross product and using CPU cores-corresponding threads as many as possible to parallelly compute result. 
+Beside that, matrix operations can be writen in easy understanding way like regular math expression.
 #### fluent matrix operations
 ```C#
         public void TestMethod()
