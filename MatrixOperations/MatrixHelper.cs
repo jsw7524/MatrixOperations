@@ -5,7 +5,7 @@ namespace JswMatrix // Note: actual namespace depends on the project name.
     public static class MatrixHelper
     {
         static Random _random = new Random(7524);
-        static bool isMultiThread = false;
+        static bool isMultiThread = true;
         public static Matrix GetRandomMatrix(int r, int c)
         {
             Matrix m = new Matrix(r, c);

@@ -202,7 +202,37 @@
 
         public Matrix GaussianElimination(Matrix a)
         {
-            throw new NotImplementedException();
+            List<Matrix> rowOperations = new List<Matrix>();
+            int n = a.row;
+            for (int i = 0; i < n; i++)//col
+            {
+                Matrix tmp1 = MatrixHelper.GetIdentityMatrix(n);
+                if (0.0 == a[i, i])
+                {
+                    int j = i + 1;
+                    for (; j < n; j++)//swap row
+                    {
+                        if (0.0 != a[j, i])
+                        {
+                            a = MatrixHelper.RowSwap(a, i, j);
+                            break;
+                        }
+                    }
+                    if (j == n)
+                    {
+                        continue;
+                    }
+                }
+                tmp1[i, i] = 1.0 / a[i, i];
+                a = tmp1 * a;
+                for (int j = i + 1; j < n; j++)//row
+                {
+                    Matrix tmp2 = MatrixHelper.GetIdentityMatrix(n);
+                    tmp2[j, i] = -1.0 * a[j, i];
+                    a = tmp2 * a;
+                }
+            }
+            return a;
         }
     }
 }

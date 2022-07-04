@@ -166,7 +166,8 @@
                 Matrix tmp1=MatrixHelper.GetIdentityMatrix(n);
                 if (0.0 == a[i, i])
                 {
-                    for (int j = i + 1; j < n; j++)//swap row
+                    int j = i + 1;
+                    for (; j < n; j++)//swap row
                     {
                         if (0.0 != a[j, i])
                         {
@@ -174,7 +175,10 @@
                             break;
                         }
                     }
-                    continue;
+                    if (j==n)
+                    {
+                        continue;
+                    }
                 }
                 tmp1[i, i] = 1.0 / a[i, i];
                 a = tmp1 * a;
