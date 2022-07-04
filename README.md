@@ -151,3 +151,43 @@ Beside that, matrix operations can be writen in easy understanding way like regu
             Assert.AreEqual(5.0, result[1, 0]);
         }
 ```
+
+#### RowSwap
+```C#
+        public void TestMethod()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            Matrix result = MatrixHelper.RowSwap(m, 1, 2);
+        }
+```
+
+#### isSingular
+```C#
+        public void TestMethod()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { -1, 2, 0, 0 }, { 2, -4, 1, 3 }, { 1, -2, 3, 9 }, { -2, 4, 2, 6 } });
+            Assert.AreEqual(true, matrixA.isSingular);
+        }
+```
+
+#### GaussianElimination
+```C#
+        public void TestMethod()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 1, -1, 1, -2 }, { 4, -2, 1, -1 }, { 1, -3, 2, -7 } });
+            Matrix result = (matrixA.GaussianElimination());
+        }
+```
+
+
+#### GaussianJordanElimination
+```C#
+        public void TestMethod()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 1, -1, 1, -2 }, { 4, -2, 1, -1 }, { 1, -3, 2, -7 } });
+            Matrix result = matrixA.GaussianJordan();
+            Assert.AreEqual(1, result[0, 3]);
+            Assert.AreEqual(2, result[1, 3]);
+            Assert.AreEqual(-1, result[2, 3]);
+        }
+```
