@@ -45,6 +45,12 @@
             get => matrixOperator.Transpose(this);
         }
 
+        bool? _isSingular = null;
+        public bool? isSingular
+        {
+            get => _isSingular==null? 0.0==matrixOperator.Determinant(this): _isSingular;
+        }
+
         public Matrix(double[,] data)
         {
             row = data.GetLength(0);

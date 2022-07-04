@@ -164,16 +164,18 @@
             for (int i = 0; i < n; i++)//col
             {
                 Matrix tmp1=MatrixHelper.GetIdentityMatrix(n);
-                //if (0.0== a[i, i])
-                //{
-                //    for (int j = i + 1; j < n; j++)//swap row
-                //    {
-                //        if (0!= a[j, i])
-                //        {
-
-                //        }
-                //    }
-                //}
+                if (0.0 == a[i, i])
+                {
+                    for (int j = i + 1; j < n; j++)//swap row
+                    {
+                        if (0.0 != a[j, i])
+                        {
+                            a=MatrixHelper.RowSwap(a, i, j);
+                            break;
+                        }
+                    }
+                    continue;
+                }
                 tmp1[i, i] = 1.0 / a[i, i];
                 a = tmp1 * a;
                 for (int j = i+1; j < n; j++)//row

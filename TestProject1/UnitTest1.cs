@@ -320,15 +320,40 @@ namespace TestProject1
             Assert.AreEqual(8.0, Math.Round(result[3, 4], 12));
         }
 
+
         [TestMethod]
         public void TestMethod26()
         {
-            Matrix matrixA = new Matrix(new double[,] { { -1, 2, 0, 0, 3 }, { 2, -4, 1, 3, -4 }, { 1, -2, 3, 9, 3 }, { -2, 4, 2, 6, 10 } });
-            Matrix result = matrixA.GaussianElimination();
-            Assert.AreEqual(1.0, Math.Round(result[0, 0], 12));
-            Assert.AreEqual(-3, Math.Round(result[0, 4], 12));
+            Matrix matrixA = new Matrix(new double[,] { { -1, 2, 0, 0}, { 2, -4, 1, 3}, { 1, -2, 3, 9 }, { -2, 4, 2, 6 } });
+
+            Assert.AreEqual(true, matrixA.isSingular);
 
         }
+
+        [TestMethod]
+        public void TestMethod27()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 1, 0, 0, 0, 0 }, { 0, 1, 0, 0, 0 }, { 0, 0, -1, -1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 1 } });
+            Assert.AreEqual(false, matrixA.isSingular);
+        }
+
+        //[TestMethod]
+        //public void TestMethod26()
+        //{
+        //    Matrix matrixA = new Matrix(new double[,] { { -1, 2, 0, 0, 3 }, { 2, -4, 1, 3, -4 }, { 1, -2, 3, 9, 3 }, { -2, 4, 2, 6, 10 } });
+        //    Matrix result = matrixA.GaussianElimination();
+        //    Assert.AreEqual(1.0, Math.Round(result[0, 0], 12));
+        //    Assert.AreEqual(-3, Math.Round(result[0, 4], 12));
+        //}
+
+
+        //[TestMethod]
+        //public void TestMethod27()
+        //{
+        //    Matrix matrixA = MatrixHelper.GetIdentityMatrix(5, 7);
+        //    Matrix result = MatrixHelper.RowSwap(matrixA, 1, 3);
+
+        //}
 
     }
 }
