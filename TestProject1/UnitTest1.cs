@@ -365,6 +365,34 @@ namespace TestProject1
             Assert.AreEqual(-1, result[2, 3]);
         }
 
+        [TestMethod]
+        public void TestMethod30()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 1, -1, 1, -2 }, { 4, -2, 1, -1 }, { 1, -3, 2, -7 } });
+            Matrix result = matrixA.GaussianJordan();
+            Assert.AreEqual(1, result[0, 3]);
+            Assert.AreEqual(2, result[1, 3]);
+            Assert.AreEqual(-1, result[2, 3]);
+        }
+
+        [TestMethod]
+        public void TestMethod31()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 1, -1, 1, -2 }, { 4, -2, 1, -1 }, { 1, -3, 2, -7 } });
+            Matrix result1 = matrixA.GaussianJordan();
+
+            Matrix matrixB = new Matrix(new double[,] { { 1, -1, 1 }, { 4, -2, 1 }, { 1, -3, 2 } });
+            Matrix matrixC = new Matrix(new double[,] { { -2 }, { -1 }, { -7 } });
+            Matrix result2 = (matrixB.InverseMatrix()) * matrixC;
+            
+            Assert.AreEqual(result1[0, 3], result2[0,0]);
+            Assert.AreEqual(result1[1, 3], result2[1,0]);
+            Assert.AreEqual(result1[2, 3], result2[2,0]);
+
+        }
+
+
+
         //[TestMethod]
         //public void TestMethod29()
         //{

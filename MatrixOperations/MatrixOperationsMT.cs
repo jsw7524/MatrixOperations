@@ -234,5 +234,21 @@
             }
             return a;
         }
+
+        public Matrix GaussianJordan(Matrix a)
+        {
+            Matrix m = GaussianElimination(a);
+
+            for (int i = 1; i < a.row; i++)
+            {
+                for (int j = i - 1; j >= 0; j--)//row
+                {
+                    Matrix tmp = MatrixHelper.GetIdentityMatrix(a.row);
+                    tmp[j, i] = -1.0 * m[j, i];
+                    m = tmp * m;
+                }
+            }
+            return m;
+        }
     }
 }

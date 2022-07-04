@@ -69,6 +69,13 @@
         {
             return matrixOperator.Determinant(this);
         }
+
+        public Matrix GaussianJordan()
+        {
+            return matrixOperator.GaussianJordan(this);
+        }
+
+
         public Matrix GaussianElimination()
         {
             return matrixOperator.GaussianElimination(this);
