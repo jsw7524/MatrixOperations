@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace MyApp // Note: actual namespace depends on the project name.
+namespace JswMatrix // Note: actual namespace depends on the project name.
 {
     public static class MatrixHelper
     {
         static Random _random = new Random(7524);
-        static bool isMultiThread = true;
+        static bool isMultiThread = false;
         public static Matrix GetRandomMatrix(int r, int c)
         {
             Matrix m = new Matrix(r, c);
@@ -27,6 +27,33 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 m[i, i] = defaultValue;
             }
             return m;
+        }
+
+        public static Matrix RowSwap(Matrix a, int r1, int r2)
+        {
+            int rowSize = a.row;
+            Matrix tmp = GetIdentityMatrix(rowSize);
+            tmp[r1, r1] = 0;
+            tmp[r2, r2] = 0;
+            tmp[r1, r2] = 1;
+            tmp[r2, r1] = 1;
+            return tmp * a;
+        }
+
+        public static Matrix MoveToLastRow(Matrix a, int targetRow)
+        {
+            int rowSize = a.row;
+            Matrix tmp = GetIdentityMatrix(rowSize, 0);
+            for (int i = 0; i < targetRow; i++)
+            {
+                tmp[i, i] = 1.0;
+            }
+            for (int i = targetRow; i < rowSize-1; i++)
+            {
+                tmp[i, i+1] = 1.0;
+            }
+            tmp[rowSize - 1, targetRow] = 1.0;
+            return tmp;
         }
 
         public static IMatrixOperations GetMatrixOperator()

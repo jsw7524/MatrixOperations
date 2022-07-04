@@ -1,4 +1,4 @@
-﻿namespace MyApp // Note: actual namespace depends on the project name.
+﻿namespace JswMatrix // Note: actual namespace depends on the project name.
 {
     public class MatrixOperations : IMatrixOperations
     {
@@ -155,6 +155,35 @@
         public Matrix InverseMatrix(Matrix a)
         {
             return (1.0 / a.Determinant()) * (a.CofactorMatrix()).T;
+        }
+
+        public Matrix GaussianElimination(Matrix a)
+        {
+            List<Matrix> rowOperations = new List<Matrix>();
+            int n = a.row;
+            for (int i = 0; i < n; i++)//col
+            {
+                Matrix tmp1=MatrixHelper.GetIdentityMatrix(n);
+                //if (0.0== a[i, i])
+                //{
+                //    for (int j = i + 1; j < n; j++)//swap row
+                //    {
+                //        if (0!= a[j, i])
+                //        {
+
+                //        }
+                //    }
+                //}
+                tmp1[i, i] = 1.0 / a[i, i];
+                a = tmp1 * a;
+                for (int j = i+1; j < n; j++)//row
+                {
+                    Matrix tmp2 = MatrixHelper.GetIdentityMatrix(n);
+                    tmp2[j, i] = -1.0* a[j, i];
+                    a = tmp2 * a;
+                }
+            }
+            return a;
         }
 
         //public double DotProduct(Matrix vectorA, Matrix vectorB)

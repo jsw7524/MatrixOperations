@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyApp;
+using JswMatrix;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -241,7 +241,7 @@ namespace TestProject1
             Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
             Matrix inverseMatrix = m.InverseMatrix();
             Matrix result = inverseMatrix * m;
-            
+
             Assert.AreEqual(1.0, Math.Round(result[0, 0], 14));
             Assert.AreEqual(1.0, Math.Round(result[1, 1], 14));
             Assert.AreEqual(1.0, Math.Round(result[2, 2], 14));
@@ -275,6 +275,60 @@ namespace TestProject1
             Assert.AreEqual(-1.0, result[2, 3]);
         }
 
+        [TestMethod]
+        public void TestMethod23()
+        {
+            Matrix matrixA = MatrixHelper.GetRandomMatrix(12, 12);
+            Matrix inverseMatrix = matrixA.InverseMatrix();
+            Matrix result = matrixA * inverseMatrix;
+            Assert.AreEqual(1.0, Math.Round(result[0, 0], 12));
+            Assert.AreEqual(1.0, Math.Round(result[1, 1], 12));
+            Assert.AreEqual(1.0, Math.Round(result[2, 2], 12));
+            Assert.AreEqual(0.0, Math.Round(result[2, 0], 12));
+            Assert.AreEqual(0.0, Math.Round(result[1, 0], 12));
+            Assert.AreEqual(0.0, Math.Round(result[2, 1], 12));
+            Assert.AreEqual(0.0, Math.Round(result[2, 0], 12));
+            Assert.AreEqual(0.0, Math.Round(result[1, 2], 12));
+            Assert.AreEqual(0.0, Math.Round(result[0, 1], 12));
+        }
+
+        [TestMethod]
+        public void TestMethod24()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 2, 1, -1, 8 }, { -3, -1, 2, -11 }, { -2, 1, 2, -3 } });
+            Matrix result = matrixA.GaussianElimination();
+            Assert.AreEqual(1.0, Math.Round(result[0, 0], 12));
+            Assert.AreEqual(1.0, Math.Round(result[1, 1], 12));
+            Assert.AreEqual(1.0, Math.Round(result[2, 2], 12));
+            Assert.AreEqual(4.0, Math.Round(result[0, 3], 12));
+            Assert.AreEqual(2.0, Math.Round(result[1, 3], 12));
+            Assert.AreEqual(-1.0, Math.Round(result[2, 3], 12));
+        }
+
+        [TestMethod]
+        public void TestMethod25()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 1, 3, -5, 2, 94 }, { 4, -3, 1, 5, 58 }, { 6, -2, 2, 4, 72 }, { 0, 2, 3, -7, -69 } });
+            Matrix result = matrixA.GaussianElimination();
+            Assert.AreEqual(1.0, Math.Round(result[0, 0], 12));
+            Assert.AreEqual(1.0, Math.Round(result[1, 1], 12));
+            Assert.AreEqual(1.0, Math.Round(result[2, 2], 12));
+            Assert.AreEqual(1.0, Math.Round(result[3, 3], 12));
+            Assert.AreEqual(94.0, Math.Round(result[0, 4], 12));
+            Assert.AreEqual(21.2, Math.Round(result[1, 4], 12));
+            Assert.AreEqual(-17.0, Math.Round(result[2, 4], 12));
+            Assert.AreEqual(8.0, Math.Round(result[3, 4], 12));
+        }
+
+        [TestMethod]
+        public void TestMethod26()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { -1, 2, 0, 0, 3 }, { 2, -4, 1, 3, -4 }, { 1, -2, 3, 9, 3 }, { -2, 4, 2, 6, 10 } });
+            Matrix result = matrixA.GaussianElimination();
+            Assert.AreEqual(1.0, Math.Round(result[0, 0], 12));
+            Assert.AreEqual(-3, Math.Round(result[0, 4], 12));
+
+        }
 
     }
 }

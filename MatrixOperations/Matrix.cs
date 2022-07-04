@@ -1,4 +1,4 @@
-﻿namespace MyApp // Note: actual namespace depends on the project name.
+﻿namespace JswMatrix // Note: actual namespace depends on the project name.
 {
     public class Matrix
     {
@@ -63,7 +63,10 @@
         {
             return matrixOperator.Determinant(this);
         }
-
+        public Matrix GaussianElimination()
+        {
+            return matrixOperator.GaussianElimination(this);
+        }
         public Matrix CofactorMatrix()
         {
             return matrixOperator.CofactorMatrix(this);

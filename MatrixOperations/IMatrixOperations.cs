@@ -1,4 +1,4 @@
-﻿namespace MyApp // Note: actual namespace depends on the project name.
+﻿namespace JswMatrix // Note: actual namespace depends on the project name.
 {
     public interface IMatrixOperations
     {
@@ -8,6 +8,9 @@
         double Determinant(Matrix a);
         Matrix CofactorMatrix(Matrix a);
         Matrix InverseMatrix(Matrix a);
+
+        Matrix GaussianElimination(Matrix a);
+
     }
 
 }
