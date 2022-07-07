@@ -393,17 +393,21 @@ namespace TestProject1
 
 
 
-        //[TestMethod]
-        //public void TestMethod29()
-        //{
-        //    Matrix matrixA = new Matrix(new double[,] { { -1, 2, 0, 0, 3 }, { 2, -4, 1, 3, -4 }, { 1, -2, 3, 9, 3 }, { -2, 4, 2, 6, 10 } });
-        //    Matrix result = (matrixA.GaussianElimination());
-        //    Matrix result2 = (result.GaussianElimination());
-        //    Assert.AreEqual(1.0, Math.Round(result[0, 0], 12));
-        //    Assert.AreEqual(-3, Math.Round(result[0, 4], 12));
-        //}
+        [TestMethod]
+        public void TestMethod32()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { -1, 2, 0, 0, 3 }, { 2, -4, 1, 3, -4 }, { 1, -2, 3, 9, 3 }, { -2, 4, 2, 6, 10 } });
+            int rank = matrixA.Rank;
+            Assert.AreEqual(2, rank);
+        }
 
-
+        [TestMethod]
+        public void TestMethod33()
+        {
+            Matrix matrixA = new Matrix(new double[,] { { 1, 0, 0, 0, 0 }, { 0, 1, 0, 0, 0 }, { 0, 0, -1, -1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 1 } });
+            int rank = matrixA.Rank;
+            Assert.AreEqual(5, rank);
+        }
 
 
     }

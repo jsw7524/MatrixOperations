@@ -44,11 +44,27 @@
         {
             get => matrixOperator.Transpose(this);
         }
+        public int Rank
+        {
+            get
+            {
+                Matrix tmp = matrixOperator.GaussianJordan(this);
+                int rank = 0;
+                for (int i = 0; i < tmp.row; i++)
+                {
+                    if (0.0 != Math.Round(tmp[i, i], 12))
+                    {
+                        rank++;
+                    }
+                }
+                return rank;
+            }
+        }
 
         bool? _isSingular = null;
         public bool? isSingular
         {
-            get => _isSingular==null? 0.0==matrixOperator.Determinant(this): _isSingular;
+            get => _isSingular == null ? 0.0 == matrixOperator.Determinant(this) : _isSingular;
         }
 
         public Matrix(double[,] data)
