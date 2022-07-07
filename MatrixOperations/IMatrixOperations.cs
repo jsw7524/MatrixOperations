@@ -12,7 +12,7 @@
         Matrix GaussianElimination(Matrix a);
 
         Matrix GaussianJordan(Matrix a);
-
+        int Rank(Matrix a);
     }
 
 }

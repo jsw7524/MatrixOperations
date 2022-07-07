@@ -44,20 +44,17 @@
         {
             get => matrixOperator.Transpose(this);
         }
+
+        int _rank = -1;
         public int Rank
         {
             get
             {
-                Matrix tmp = matrixOperator.GaussianJordan(this);
-                int rank = 0;
-                for (int i = 0; i < tmp.row; i++)
+                if (_rank == -1)
                 {
-                    if (0.0 != Math.Round(tmp[i, i], 12))
-                    {
-                        rank++;
-                    }
+                    _rank = matrixOperator.Rank(this);
                 }
-                return rank;
+                return _rank;
             }
         }
 
@@ -66,6 +63,34 @@
         {
             get => _isSingular == null ? 0.0 == matrixOperator.Determinant(this) : _isSingular;
         }
+
+        /// ///////////////////////
+
+        public Vector GetColumn(int columnNumber)
+        {
+            return new Vector(Enumerable.Range(0, this.matrix.GetLength(0))
+                    .Select(y => this[y, columnNumber])
+                    .ToArray());
+        }
+
+        public IEnumerable<Vector> GetColumns()
+        {
+            return Enumerable.Range(0, this.matrix.GetLength(1)).Select(c => this.GetColumn(c));
+        }
+
+        public Vector GetRow( int rowNumber)
+        {
+            return new Vector(Enumerable.Range(0, this.matrix.GetLength(1))
+                    .Select(x => this.matrix[rowNumber, x])
+                    .ToArray());
+        }
+
+        public IEnumerable<Vector> GetRows()
+        {
+            return Enumerable.Range(0, this.matrix.GetLength(0)).Select(r => this.GetRow(r));
+        }
+
+        /// //////////////////////////////////////////////
 
         public Matrix(double[,] data)
         {

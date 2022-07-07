@@ -250,5 +250,19 @@
             }
             return m;
         }
+
+        public int Rank(Matrix a)
+        {
+            Matrix tmp = GaussianJordan(a);
+            int rank = 0;
+            for (int i = 0; i < tmp.row; i++)
+            {
+                if (0.0 != Math.Round(tmp[i, i], 12))
+                {
+                    rank++;
+                }
+            }
+            return rank;
+        }
     }
 }

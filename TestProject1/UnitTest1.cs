@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace TestProject1
 {
@@ -391,8 +392,6 @@ namespace TestProject1
 
         }
 
-
-
         [TestMethod]
         public void TestMethod32()
         {
@@ -410,5 +409,39 @@ namespace TestProject1
         }
 
 
+        [TestMethod]
+        public void TestMethod34()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            List<Vector> columns=(m.GetColumns()).ToList();
+
+            Assert.AreEqual(1, columns[0][0]);
+            Assert.AreEqual(0, columns[0][1]);
+            Assert.AreEqual(5, columns[0][2]);
+            Assert.AreEqual(2, columns[1][0]);
+            Assert.AreEqual(1, columns[1][1]);
+            Assert.AreEqual(6, columns[1][2]);
+            Assert.AreEqual(3, columns[2][0]);
+            Assert.AreEqual(5, columns[2][1]);
+            Assert.AreEqual(0, columns[2][2]);
+        }
+
+        [TestMethod]
+        public void TestMethod35()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            List<Vector> rows = m.GetRows().ToList();
+
+            Assert.AreEqual(1, rows[0][0]);
+            Assert.AreEqual(2, rows[0][1]);
+            Assert.AreEqual(3, rows[0][2]);
+            Assert.AreEqual(0, rows[1][0]);
+            Assert.AreEqual(1, rows[1][1]);
+            Assert.AreEqual(5, rows[1][2]);
+            Assert.AreEqual(5, rows[2][0]);
+            Assert.AreEqual(6, rows[2][1]);
+            Assert.AreEqual(0, rows[2][2]);
+
+        }
     }
 }
