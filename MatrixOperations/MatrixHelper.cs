@@ -51,6 +51,16 @@ namespace JswMatrix // Note: actual namespace depends on the project name.
             tmp[r2, r1] = 1;
             return tmp * a;
         }
+        public static Matrix ColumnSwap(Matrix a, int c1, int c2)
+        {
+            int colSize = a.col;
+            Matrix tmp = GetIdentityMatrix(colSize);
+            tmp[c1, c1] = 0;
+            tmp[c2, c2] = 0;
+            tmp[c1, c2] = 1;
+            tmp[c2, c1] = 1;
+            return  a * tmp;
+        }
 
         public static Matrix MoveToLastRow(Matrix a, int targetRow)
         {

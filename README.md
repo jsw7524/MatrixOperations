@@ -161,6 +161,15 @@ Beside that, matrix operations can be writen in easy understanding way like regu
         }
 ```
 
+#### ColumnSwap
+```C#
+        public void TestMethod()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            Matrix result = MatrixHelper.ColumnSwap(m, 1, 2);
+        }
+```
+
 #### isSingular
 ```C#
         public void TestMethod()
@@ -189,5 +198,22 @@ Beside that, matrix operations can be writen in easy understanding way like regu
             Assert.AreEqual(1, result[0, 3]);
             Assert.AreEqual(2, result[1, 3]);
             Assert.AreEqual(-1, result[2, 3]);
+        }
+```
+
+#### GetRows
+```C#
+        public void TestMethod()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            List<Vector> rows = m.GetRows().ToList();
+        }
+```
+#### GetColumns
+```C#
+        public void TestMethod()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            List<Vector> columns=m.GetColumns().ToList();
         }
 ```
