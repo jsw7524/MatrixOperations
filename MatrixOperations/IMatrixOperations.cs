@@ -9,9 +9,9 @@
         Matrix CofactorMatrix(Matrix a);
         Matrix InverseMatrix(Matrix a);
 
-        Matrix GaussianElimination(Matrix a);
+        Matrix GaussianElimination(Matrix a, IList<Matrix> rowOperations = null);
 
-        Matrix GaussianJordan(Matrix a);
+        Matrix GaussianJordan(Matrix a, IList<Matrix> rowOperations = null);
         int Rank(Matrix a);
     }
 

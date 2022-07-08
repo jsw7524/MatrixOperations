@@ -19,6 +19,18 @@ namespace JswMatrix // Note: actual namespace depends on the project name.
             return m;
         }
 
+        public static Matrix MultiplyAllMatrices(IList<Matrix> matrices)
+        {
+            int n = matrices[0].row;
+            Matrix result=MatrixHelper.GetIdentityMatrix(n);
+            foreach (Matrix m in matrices)
+            {
+                result = result * m;
+            }
+            return result;
+        }
+
+
         public static Matrix GetIdentityMatrix(int n, double defaultValue = 1.0)
         {
             Matrix m = new Matrix(n, n);

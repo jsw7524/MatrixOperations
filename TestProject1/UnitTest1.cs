@@ -443,5 +443,30 @@ namespace TestProject1
             Assert.AreEqual(0, rows[2][2]);
 
         }
+
+        [TestMethod]
+        public void TestMethod36()
+        {
+            List<Matrix> rowOperations = new List<Matrix>();
+            Matrix matrixA = new Matrix(new double[,] { { 1, -1, 1 }, { 4, -2, 1 }, { 1, -3, 2 } });
+            Matrix result1 = matrixA.GaussianJordan(rowOperations);
+            rowOperations.Reverse();
+            Matrix result2=MatrixHelper.MultiplyAllMatrices(rowOperations);
+            Matrix result = result2 * matrixA;
+
+            Assert.AreEqual(1.0, Math.Round(result[0, 0], 14));
+            Assert.AreEqual(0.0, Math.Round(result[0, 1], 14));
+            Assert.AreEqual(0.0, Math.Round(result[0, 2], 14));
+            Assert.AreEqual(0.0, Math.Round(result[1, 0], 14));
+            Assert.AreEqual(1.0, Math.Round(result[1, 1], 14));
+            Assert.AreEqual(0.0, Math.Round(result[1, 2], 14));
+            Assert.AreEqual(0.0, Math.Round(result[2, 0], 14));
+            Assert.AreEqual(0.0, Math.Round(result[2, 1], 14));
+            Assert.AreEqual(1.0, Math.Round(result[2, 2], 14));
+
+        }
+
+
+
     }
 }

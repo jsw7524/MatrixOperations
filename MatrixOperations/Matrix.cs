@@ -111,15 +111,15 @@
             return matrixOperator.Determinant(this);
         }
 
-        public Matrix GaussianJordan()
+        public Matrix GaussianJordan(IList<Matrix> rowOperations = null)
         {
-            return matrixOperator.GaussianJordan(this);
+            return matrixOperator.GaussianJordan(this, rowOperations);
         }
 
 
-        public Matrix GaussianElimination()
+        public Matrix GaussianElimination(IList<Matrix> rowOperations = null)
         {
-            return matrixOperator.GaussianElimination(this);
+            return matrixOperator.GaussianElimination(this, rowOperations);
         }
         public Matrix CofactorMatrix()
         {

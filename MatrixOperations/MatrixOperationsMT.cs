@@ -200,9 +200,8 @@
             return (1.0 / a.Determinant()) * (a.CofactorMatrix()).T;
         }
 
-        public Matrix GaussianElimination(Matrix a)
+        public Matrix GaussianElimination(Matrix a, IList<Matrix> rowOperations=null)
         {
-            List<Matrix> rowOperations = new List<Matrix>();
             int n = a.row;
             for (int i = 0; i < n; i++)//col
             {
@@ -224,20 +223,22 @@
                     }
                 }
                 tmp1[i, i] = 1.0 / a[i, i];
+                rowOperations?.Add(tmp1);
                 a = tmp1 * a;
                 for (int j = i + 1; j < n; j++)//row
                 {
                     Matrix tmp2 = MatrixHelper.GetIdentityMatrix(n);
                     tmp2[j, i] = -1.0 * a[j, i];
+                    rowOperations?.Add(tmp2);
                     a = tmp2 * a;
                 }
             }
             return a;
         }
 
-        public Matrix GaussianJordan(Matrix a)
+        public Matrix GaussianJordan(Matrix a, IList<Matrix> rowOperations=null)
         {
-            Matrix m = GaussianElimination(a);
+            Matrix m = GaussianElimination(a, rowOperations);
 
             for (int i = 1; i < a.row; i++)
             {
@@ -245,6 +246,7 @@
                 {
                     Matrix tmp = MatrixHelper.GetIdentityMatrix(a.row);
                     tmp[j, i] = -1.0 * m[j, i];
+                    rowOperations?.Add(tmp);
                     m = tmp * m;
                 }
             }
