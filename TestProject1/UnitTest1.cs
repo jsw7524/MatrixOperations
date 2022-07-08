@@ -466,7 +466,18 @@ namespace TestProject1
 
         }
 
-
+        [TestMethod]
+        public void TestMethod37()
+        {
+            Matrix m = new Matrix(new double[,] { { 1, 2, 3 }, { 0, 1, 5 }, { 5, 6, 0 } });
+            Matrix result = MatrixHelper.ColumnSwap(m, 1, 2);
+            Assert.AreEqual(3, result[0, 1]);
+            Assert.AreEqual(5, result[1, 1]);
+            Assert.AreEqual(0, result[2, 1]);
+            Assert.AreEqual(2, result[0, 2]);
+            Assert.AreEqual(1, result[1, 2]);
+            Assert.AreEqual(6, result[2, 2]);
+        }
 
     }
 }
